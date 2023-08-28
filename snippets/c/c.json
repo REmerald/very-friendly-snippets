@@ -16,7 +16,7 @@
             "#include <stdio.h>",
             "#include <stdlib.h>",
             "",
-            "int main(int argc, char *argv[])",
+            "int main(int argc, char* argv[])",
             "{$0",
             "",
             "\treturn EXIT_SUCCESS;",
@@ -40,7 +40,7 @@
     "main() template": {
         "prefix": "main",
         "body": [
-            "int main(int argc, char *argv[])",
+            "int main(int argc, char* argv[])",
             "{$0",
             "",
             "\treturn EXIT_SUCCESS;",
@@ -214,15 +214,10 @@
         "body": ["for (int ${1:i} = ${2:1}; $1 < argc; $1++) {$0", "}"],
         "description": "'for' loop for cmdline arguments"
     },
-    "Function declaration": {
-        "prefix": "fund",
-        "body": ["${2:void} ${1:fun}(${3:void});"],
-        "description": "Declare a function"
-    },
-    "Function definition": {
-        "prefix": "fun",
-        "body": ["${2:void} ${1:fun}(${3:void})", "{$0", "}"],
-        "description": "Define a function"
+    "Make a function": {
+        "prefix": "func",
+        "body": ["${2:void} ${1:fun}(${3:void})$0"],
+        "description": "Make a function declaration/definition"
     },
     "typedef": {
         "prefix": "typedef",
@@ -372,45 +367,40 @@
     "fputs() errcheck": {
         "prefix": "chkio_eof",
         "body": [
-            "if (${1:status} == EOF$2) {",
-            "\t${3:err(EXIT_FAILURE, \"IO is hard\");}",
-            "}"
+            "if (${1:status} == EOF$2)",
+            "\terr(EXIT_FAILURE, \"${3:IO is hard}\");"
         ],
         "description": "Error checking for int IO functions"
     },
     "fgets() errcheck": {
         "prefix": "chkio_null",
         "body": [
-            "if (!${1:status}) {",
-            "\t${2:err(EXIT_FAILURE, \"IO is very hard\");}",
-            "}"
+            "if (!${1:status})",
+            "\terr(EXIT_FAILURE, \"${2:IO is very hard}\");"
         ],
         "description": "Error checking for pointer-type IO functions"
     },
     "fseek() errcheck": {
         "prefix": "chkio_mi",
         "body": [
-            "if (${1:status} == -1$2) {",
-            "\t${3:err(EXIT_FAILURE, \"IO is super hard\");}",
-            "}"
+            "if (${1:status} == -1$2)",
+            "\terr(EXIT_FAILURE, \"${3:IO is super hard}\");"
         ],
         "description": "Error checking for fseek(), getline() like functions"
     },
     "printf() errcheck": {
         "prefix": "chkio_neg",
         "body": [
-            "if (${1:status} < 0$2) {",
-            "\t${3:err(EXIT_FAILURE, \"Ran out of ink\");}",
-            "}"
+            "if (${1:status} < 0$2)",
+            "\terr(EXIT_FAILURE, \"${3:Ran out of ink}\");"
         ],
         "description": "Error checking for printf()-like functions"
     },
     "malloc() errcheck": {
         "prefix": "chkmem",
         "body": [
-            "if (!${1:status}) {",
-            "\t${2:err(EXIT_FAILURE, \"Your memory is doomed\");}",
-            "}"
+            "if (!${1:status})",
+            "\terr(EXIT_FAILURE, \"${2:Your memory is doomed}\");"
         ],
         "description": "Error checking for malloc()-like"
     },
