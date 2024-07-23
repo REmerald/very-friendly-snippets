@@ -199,7 +199,7 @@
     "for count": {
         "prefix": "forc",
         "body": [
-            "for (${1:size_t} ${2:i} = ${3:0}; $2 < ${4:count}; $2${5:++}) {$0",
+            "for (${1:size_t} ${2:i} = ${3:0}; $2 < ${4:count}; ++$2) {$0",
             "}"
         ],
         "description": "'for' loop focusing on iteration times"
@@ -207,14 +207,14 @@
     "for range": {
         "prefix": "forg",
         "body": [
-            "for (${1:size_t} ${2:i} = ${3:1}; $2 <= ${4:last}; $2${5:++}) {$0",
+            "for (${1:size_t} ${2:i} = ${3:1}; $2 <= ${4:last}; ++$2) {$0",
             "}"
         ],
         "description": "'for' loop focusing on inclusive range"
     },
     "for argv[]": {
         "prefix": "fora",
-        "body": ["for (int ${1:i} = ${2:1}; $1 < argc; $1++) {$0", "}"],
+        "body": ["for (int ${1:i} = ${2:1}; $1 < argc; ++$1) {$0", "}"],
         "description": "'for' loop for cmdline arguments"
     },
     "Function ...": {
