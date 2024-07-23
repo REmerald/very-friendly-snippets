@@ -376,7 +376,7 @@
         "prefix": "chkio_eof",
         "body": [
             "if (${1:status} == EOF$2) {",
-            "\t${3:err(EXIT_FAILURE, \"IO is hard\");}",
+            "\terr(EXIT_FAILURE, \"${3:IO is hard}\");",
             "}"
         ],
         "description": "Error checking for int IO functions"
@@ -385,7 +385,7 @@
         "prefix": "chkio_null",
         "body": [
             "if (!${1:status}) {",
-            "\t${2:err(EXIT_FAILURE, \"IO is very hard\");}",
+            "\terr(EXIT_FAILURE, \"${2:IO is very hard}\");",
             "}"
         ],
         "description": "Error checking for pointer-type IO functions"
@@ -394,7 +394,7 @@
         "prefix": "chkio_mi",
         "body": [
             "if (${1:status} == -1$2) {",
-            "\t${3:err(EXIT_FAILURE, \"IO is super hard\");}",
+            "\terr(EXIT_FAILURE, \"${3:IO is super hard}\");",
             "}"
         ],
         "description": "Error checking for fseek(), getline() like functions"
@@ -403,7 +403,7 @@
         "prefix": "chkio_neg",
         "body": [
             "if (${1:status} < 0$2) {",
-            "\t${3:err(EXIT_FAILURE, \"Ran out of ink\");}",
+            "\terr(EXIT_FAILURE, \"${3:Ran out of ink}\");",
             "}"
         ],
         "description": "Error checking for printf()-like functions"
@@ -412,7 +412,7 @@
         "prefix": "chkmem",
         "body": [
             "if (!${1:status}) {",
-            "\t${2:err(EXIT_FAILURE, \"Your memory is doomed\");}",
+            "\terr(EXIT_FAILURE, \"${2:Your memory is doomed}\");",
             "}"
         ],
         "description": "Error checking for malloc()-like"
